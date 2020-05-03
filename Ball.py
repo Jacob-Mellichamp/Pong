@@ -16,7 +16,6 @@ The Player class will contain the methods:
 import pygame
 import Pong
 from random import randint
-BLACK = (0,0,0)
 
 class Ball(pygame.sprite.Sprite):
     
@@ -27,22 +26,21 @@ class Ball(pygame.sprite.Sprite):
         self.color = color
         #create ball sprite
         self.image = pygame.Surface([x,y])
+        self.image.fill(Pong.BLACK)
+        self.image.set_colorkey(Pong.BLACK)
+
         #getting rectangle object
         self.rect = self.image.get_rect()
-        #generating velocity
-        self.velocity = [randint(-8,8), randint(-8,8)]
-        self.image.fill(BLACK)
-        self.image.set_colorkey(BLACK)
 
+        #generating velocity
+        self.velocity = [randint(4,8), randint(-8,8)]
+        
         pygame.draw.rect(self.image, Pong.WHITE , [0, 0, self.x, self.y])
 
     def move(self, speed):
         self.rect.x += self.velocity[0] * speed
         self.rect.y += self.velocity[1] * speed
-    
-    def draw(self, screen, spawnX, spawnY):
-        pass
-        #pygame.draw.rect(screen, self.color, [spawnX, spawnY, self.x, self.y])
+
 
     def check_bounds(self):
         if self.rect.x >= 690:
