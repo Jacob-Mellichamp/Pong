@@ -14,12 +14,14 @@ The Player class will contain the methods:
 
 """
 import pygame
+import Pong
 from random import randint
 BLACK = (0,0,0)
 
-class Ball:
+class Ball(pygame.sprite.Sprite):
     
     def __init__(self, color, x, y):
+        super().__init__()
         self.x = x
         self.y = y
         self.color = color
@@ -29,16 +31,19 @@ class Ball:
         self.rect = self.image.get_rect()
         #generating velocity
         self.velocity = [randint(-8,8), randint(-8,8)]
+        self.image.fill(BLACK)
+        self.image.set_colorkey(BLACK)
+
+        pygame.draw.rect(self.image, Pong.WHITE , [0, 0, self.x, self.y])
 
     def move(self, speed):
         self.rect.x += self.velocity[0] * speed
         self.rect.y += self.velocity[1] * speed
     
     def draw(self, screen, spawnX, spawnY):
-         pygame.draw.rect(screen, self.color, [spawnX, spawnY, self.x, self.y])
-
-    def check_if_hit(self):
         pass
+        #pygame.draw.rect(screen, self.color, [spawnX, spawnY, self.x, self.y])
+
     def check_bounds(self):
         if self.rect.x >= 690:
             #flip the velocity (change direction)
@@ -50,6 +55,8 @@ class Ball:
             self.velocity[1] = -self.velocity[1]
         if self.rect.y <= 0:
             self.velocity[1] = -self.velocity[1]
+
     def bounce(self):
         self.velocity[0] = -self.velocity[0]
-        self.velocity[1] = -self.velocity[1]
+        #self.velocity[1] = randint(-8,8)
+    
