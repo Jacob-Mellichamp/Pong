@@ -50,23 +50,12 @@ class Player(pygame.sprite.Sprite):
     def move (self):
         self.getCords()
 
-    # def check_if_hit(self, ball):
-    #     ball_mask = ball.get_mask()
-    #     player_mask = pygame.mask.from_surface(self.image)
 
-    #     offset = (self.x - ball.x, self.top - ball.y)
-
-    #     point = ball_mask.overlap(player_mask, offset)
-
-    #     if point:
-    #         return True
-        
-    #     return False
     
     #AI will calculate where ball will be
     def AIprediect(self, ball):
         slope = ball.calcSlope()
-        predictedY = slope * (self.side1 - ball.rect.x) + ball.rect.y
+        predictedY = slope * (self.rect.x - ball.rect.x) + ball.rect.y
         
         updated_slope = slope
         updated_y = ball.rect.y
@@ -79,14 +68,14 @@ class Player(pygame.sprite.Sprite):
                 updated_x = (700 - updated_y) + (updated_slope * updated_x) / updated_slope
                 updated_slope = -updated_slope
                 updated_y = 700
-                predictedY = updated_slope * (self.side1 - updated_x) + updated_y
+                predictedY = updated_slope * (self.rect.x - updated_x) + updated_y
             
             #if ball hits the bottom
             if(predictedY < 0):
                 updated_x = (0 - updated_y) + (updated_slope * updated_x) / updated_slope
                 updated_slope = -updated_slope
                 updated_y = 0
-                predictedY = updated_slope * (self.side1 - updated_x) + updated_y
+                predictedY = updated_slope * (self.rect.x - updated_x) + updated_y
             
         
 
@@ -95,11 +84,13 @@ class Player(pygame.sprite.Sprite):
     #AI will move towards the predicted location
     def AImove(self, coordy):
         
-        if(self.top < coordy):
-            self.top = self.top + Pong.AI_SPEED
-        
+        if(self.rect.y + Pong.AI_SPEED < 700):
+            if(self.rect.y - Pong.PLAYER_HEIGHT + Pong.AI_SPEED > 0):
+            
+                if(self.rect.y < coordy):
+                    self.rect.y = self.rect.y + Pong.AI_SPEED
+                
 
-        if(self.top > coordy):
-            self.top = self.top - Pong.AI_SPEED
-        
+                if(self.rect.y > coordy):
+                    self.rect.y = self.rect.y - Pong.AI_SPEED
     

@@ -2,7 +2,7 @@ import pygame
 import Pong
 
 # Open a new window
-size = (700, 500)
+size = (700, 600)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Pong")
 
