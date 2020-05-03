@@ -42,11 +42,13 @@ class Player(pygame.sprite.Sprite):
         
     def move (self):
         self.getCords()
+
+
     
     #AI will calculate where ball will be
     def AIprediect(self, ball):
         slope = ball.calcSlope()
-        predictedY = slope * (Pong.PLAYER_WIDTH - ball.rect.x) + ball.rect.y
+        predictedY = slope * (self.rect.x - ball.rect.x) + ball.rect.y
         
         updated_slope = slope
         updated_y = ball.rect.y
@@ -59,14 +61,14 @@ class Player(pygame.sprite.Sprite):
                 updated_x = (700 - updated_y) + (updated_slope * updated_x) / updated_slope
                 updated_slope = -updated_slope
                 updated_y = 700
-                predictedY = updated_slope * (Pong.PLAYER_WIDTH - updated_x) + updated_y
+                predictedY = updated_slope * (self.rect.x - updated_x) + updated_y
             
             #if ball hits the bottom
             if(predictedY < 0):
                 updated_x = (0 - updated_y) + (updated_slope * updated_x) / updated_slope
                 updated_slope = -updated_slope
                 updated_y = 0
-                predictedY = updated_slope * (Pong.PLAYER_WIDTH - updated_x) + updated_y
+                predictedY = updated_slope * (self.rect.x - updated_x) + updated_y
             
         
 
@@ -75,11 +77,13 @@ class Player(pygame.sprite.Sprite):
     #AI will move towards the predicted location
     def AImove(self, coordy):
         
-        if(Pong.PLAYER_HEIGHT < coordy):
-            Pong.PLAYER_HEIGHT = Pong.PLAYER_HEIGHT + Pong.AI_SPEED
-        
+        if(self.rect.y + Pong.AI_SPEED < 700):
+            if(self.rect.y - Pong.PLAYER_HEIGHT + Pong.AI_SPEED > 0):
+            
+                if(self.rect.y < coordy):
+                    self.rect.y = self.rect.y + Pong.AI_SPEED
+                
 
-        if(Pong.PLAYER_HEIGHT > coordy):
-            Pong.PLAYER_HEIGHT = Pong.PLAYER_HEIGHT - Pong.AI_SPEED
-        
+                if(self.rect.y > coordy):
+                    self.rect.y = self.rect.y - Pong.AI_SPEED
     

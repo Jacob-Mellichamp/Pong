@@ -59,6 +59,7 @@ class Ball(pygame.sprite.Sprite):
             self.velocity[1] = -self.velocity[1]
 
     def bounce(self):
+        #TODO: figure out some physics
         self.velocity[0] = -self.velocity[0]
         #self.velocity[1] = randint(-8,8)
     
