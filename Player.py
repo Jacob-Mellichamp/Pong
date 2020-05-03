@@ -40,5 +40,7 @@ class Player:
         
     def move (self):
         self.getCords()
-    def AImove(self):
-        
+    
+    #AI needs to move to where ball will be
+    def AImove(self, ball):
+        pass
