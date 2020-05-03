@@ -27,6 +27,8 @@ class Player:
         self.bottom = Pong.PLAYER_HEIGHT
         self.side1 = x
         self.side2 = Pong.PLAYER_WIDTH
+        self.image = pygame.Surface([x,y])
+        self.rect = self.image.get_rect()
 
     def draw(self, screen):
         pygame.draw.rect(screen, Pong.WHITE , [self.side1, self.top, self.side2, self.bottom] )

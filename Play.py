@@ -25,6 +25,10 @@ while Playing:
 
     #checking bounds for ball (making it bounce)
     Pong.ball.check_bounds()
+
+    if pygame.sprite.collide_mask(Pong.ball, Pong.player1) or pygame.sprite.collide_mask(Pong.ball, Pong.player2):
+        print("collided")
+        ball.bounce()
     
     #refresh background after every frame
     screen.fill(Pong.BLACK)
