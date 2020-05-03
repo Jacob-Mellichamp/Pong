@@ -23,6 +23,7 @@ ball = Ball(WHITE, 10, 10)
 ball.rect.x = 345
 ball.rect.y = 195
 
+
 #player options
 PLAYER1_START = (20, 250)
 PLAYER2_START = (670, 250)

@@ -35,7 +35,8 @@ while Playing:
     #drawing ball
     Pong.ball.draw(screen, Pong.ball.rect.x, Pong.ball.rect.y)
     #drawing players
-    Pong.player1.move()
+    goto_y = Pong.player1.AIprediect(Pong.ball)
+    Pong.player1.AImove(goto_y)
     Pong.player2.move()
     Pong.player1.draw(screen)
     Pong.player2.draw(screen)

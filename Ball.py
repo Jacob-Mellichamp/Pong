@@ -33,6 +33,10 @@ class Ball(pygame.sprite.Sprite):
         #generating velocity
         self.velocity = [randint(-8,8), randint(-8,8)]
 
+    #return slope of current state of ball
+    def calcSlope(self):
+        return self.velocity[1] / self.velocity[0]
+        
     def move(self, speed):
         self.rect.x += self.velocity[0] * speed
         self.rect.y += self.velocity[1] * speed
