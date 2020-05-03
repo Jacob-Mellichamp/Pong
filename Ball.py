@@ -37,6 +37,10 @@ class Ball(pygame.sprite.Sprite):
         
         pygame.draw.rect(self.image, Pong.WHITE , [0, 0, self.x, self.y])
 
+    #return slope of current state of ball
+    def calcSlope(self):
+        return self.velocity[1] / self.velocity[0]
+        
     def move(self, speed):
         self.rect.x += self.velocity[0] * speed
         self.rect.y += self.velocity[1] * speed

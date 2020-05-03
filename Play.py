@@ -38,9 +38,14 @@ while Playing:
     
     #drawing sprites
     Pong.sprites_list.draw(screen)
-    #moving players
+    #moving player
     Pong.player1.move()
+
+    #ai movement
+    goto_y = Pong.player1.AIprediect(Pong.ball)
+    Pong.player1.AImove(goto_y)
     Pong.player2.move()
+    
     #moving ball
     Pong.ball.move(Pong.BALL_SPEED)
     #updating screen
