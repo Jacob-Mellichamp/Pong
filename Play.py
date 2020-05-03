@@ -26,6 +26,9 @@ while Playing:
     #checking bounds for ball (making it bounce)
     Pong.ball.check_bounds()
     
+    if pygame.sprite.collide_mask(Pong.ball, Pong.player1) or pygame.sprite.collide_mask(Pong.ball, Pong.player2):
+        Pong.ball.bounce()
+    
     #refresh background after every frame
     screen.fill(Pong.BLACK)
     #draw net 
@@ -33,13 +36,14 @@ while Playing:
 
     
     #drawing ball
-    Pong.ball.draw(screen, Pong.ball.rect.x, Pong.ball.rect.y)
+    Pong.sprites_list.draw(screen)
+    # Pong.ball.draw(screen, Pong.ball.rect.x, Pong.ball.rect.y)
     #drawing players
     goto_y = Pong.player1.AIprediect(Pong.ball)
     Pong.player1.AImove(goto_y)
     Pong.player2.move()
-    Pong.player1.draw(screen)
-    Pong.player2.draw(screen)
+    # Pong.player1.draw(screen)
+    # Pong.player2.draw(screen)
     
     #moving ball
     Pong.ball.move(Pong.BALL_SPEED)

@@ -17,62 +17,26 @@ AI_SPEED = 5
 #player options
 PLAYER_WIDTH = 10
 PLAYER_HEIGHT = 70
+PLAYER1_START = (20, 250)
+PLAYER2_START = (670, 250)
 
 #create ball
 ball = Ball(WHITE, 10, 10)
 ball.rect.x = 345
 ball.rect.y = 195
 
-
-#player options
-PLAYER1_START = (20, 250)
-PLAYER2_START = (670, 250)
+#create player 1
 player1 = Player(PLAYER1_START[0], PLAYER1_START[1])
+player1.rect.x = 20
+player1.rect.y = 250
+#create player 2
 player2 = Player(PLAYER2_START[0], PLAYER2_START[1])
+player2.rect.x = 670
+player2.rect.y = 250
 
 #sprite list
-# sprites_list = pygame.sprite.Group()
-# sprites_list.add(ball)
+sprites_list = pygame.sprite.Group()
+sprites_list.add(ball)
+sprites_list.add(player1)
+sprites_list.add(player2)
 
-
-#user is playing game
-# Playing = True
-
-# fps = pygame.time.Clock()
-
-# while Playing:
-#     for event in pygame.event.get():
-#         if event.type == pygame.QUIT:
-#             Playing = False
-
-
-#     #checking bounds for ball (making it bounce)
-#     if ball.rect.x >= 690:
-#         #flip the velocity (change direction)
-#         ball.velocity[0] = -ball.velocity[0]
-#     if ball.rect.x <= 0:
-#         ball.velocity[0] = -ball.velocity[0]
-
-#     if ball.rect.y >= 490:
-#         ball.velocity[1] = -ball.velocity[1]
-#     if ball.rect.y <= 0:
-#         ball.velocity[1] = -ball.velocity[1]
-    
-#     #refresh background after every frame
-#     screen.fill(BLACK)
-#     #draw net 
-#     pygame.draw.line(screen, WHITE, (350,500), (350, 0), 5)
-
-    
-#     ball.move(BALL_SPEED)
-#     ball.draw(screen, ball.rect.x, ball.rect.y)
-#     pygame.display.flip()
-
-
-#     fps.tick(60)
-    
-
-
-
-            
-# pygame.quit()

@@ -19,10 +19,11 @@ import pygame
 
 
 
-class Player:
+class Player(pygame.sprite.Sprite):
     
     #define constants
     def __init__(self, x,y):
+        super().__init__()
         self.x = x
         self.y = y
         self.top = y
@@ -30,16 +31,37 @@ class Player:
         self.side1 = x
         self.side2 = Pong.PLAYER_WIDTH
 
+        self.image = pygame.Surface([x,y])
+        self.image.fill(Pong.BLACK)
+        self.image.set_colorkey(Pong.BLACK)
+
+        pygame.draw.rect(self.image, Pong.WHITE , [0, 0, self.side2, self.bottom])
+        
+        
+        self.rect = self.image.get_rect()
+
+       
+
 
     #get mouse cordinates
     def getCords(self):
-        self.top = pygame.mouse.get_pos()[1] - (Pong.PLAYER_HEIGHT / 2)
-    #draw  the current position of 
-    def draw(self, screen):
-        pygame.draw.rect(screen, Pong.WHITE , [self.side1, self.top, self.side2, self.bottom] )
+        self.rect.y = pygame.mouse.get_pos()[1] - (Pong.PLAYER_HEIGHT / 2)
         
     def move (self):
         self.getCords()
+
+    # def check_if_hit(self, ball):
+    #     ball_mask = ball.get_mask()
+    #     player_mask = pygame.mask.from_surface(self.image)
+
+    #     offset = (self.x - ball.x, self.top - ball.y)
+
+    #     point = ball_mask.overlap(player_mask, offset)
+
+    #     if point:
+    #         return True
+        
+    #     return False
     
     #AI will calculate where ball will be
     def AIprediect(self, ball):
