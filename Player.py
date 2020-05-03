@@ -13,14 +13,23 @@ The Player class will contain the methods:
 
 """
 import Pong
+import pygame
 
 
 class Player:
     
     def __init__(self, x,y):
+        # x = 30
+        # y = 250
         self.x = x
         self.y = y
+        self.top = y
+        self.bottom = Pong.PLAYER_HEIGHT
+        self.side1 = x
+        self.side2 = Pong.PLAYER_WIDTH
 
-    def draw(self):
-        pass
+    def draw(self, screen):
+        pygame.draw.rect(screen, Pong.WHITE , [self.side1, self.top, self.side2, self.bottom] )
+        
     def move (self):
+        pass
