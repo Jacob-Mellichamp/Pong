@@ -24,3 +24,4 @@ class Player:
     def draw(self):
         pass
     def move (self):
+        pass
