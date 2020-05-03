@@ -1,6 +1,6 @@
 import pygame
-import Pong
 import Ball
+import Pong
 import Player
 
 
