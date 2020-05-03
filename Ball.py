@@ -42,3 +42,14 @@ class Ball(pygame.sprite.Sprite):
 
     def check_if_hit(self):
         pass
+    def check_bounds(self):
+        if self.rect.x >= 690:
+            #flip the velocity (change direction)
+            self.velocity[0] = -self.velocity[0]
+        if self.rect.x <= 0:
+            self.velocity[0] = -self.velocity[0]
+
+        if self.rect.y >= 490:
+            self.velocity[1] = -self.velocity[1]
+        if self.rect.y <= 0:
+            self.velocity[1] = -self.velocity[1]
