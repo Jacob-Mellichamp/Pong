@@ -36,7 +36,15 @@ class Player(pygame.sprite.Sprite):
 
     #get mouse cordinates
     def getCords(self):
-        self.rect.y = pygame.mouse.get_pos()[1] - (Pong.PLAYER_HEIGHT / 2)
+
+        #bounds check the mouse pointer
+        cord = pygame.mouse.get_pos()[1] - (Pong.PLAYER_HEIGHT / 2)
+        if(cord < 0):
+            cord = 0
+        
+        if(cord > 450):
+            cord = 450
+        self.rect.y = cord
 
         
     def move (self):
@@ -44,7 +52,24 @@ class Player(pygame.sprite.Sprite):
  
     #AI will calculate where ball will be
     def AIprediect(self, ball):
-        slope = ball.calcSlope()
+        return ball.rect.y
+
+    #AI will move towards the predicted location
+    def AImove(self, coordy):
+        
+            
+        if(self.rect.y < coordy):
+            self.rect.y = self.rect.y + Pong.AI_SPEED
+        
+
+        if(self.rect.y > coordy):
+            self.rect.y = self.rect.y - Pong.AI_SPEED
+
+
+
+    """
+    Fun algorithm to predict exactly where ball will be
+            slope = ball.calcSlope()
         predictedY = slope * (self.rect.x - ball.rect.x) + ball.rect.y
         
         updated_slope = slope
@@ -70,16 +95,4 @@ class Player(pygame.sprite.Sprite):
             
         return predictedY
 
-    #AI will move towards the predicted location
-    def AImove(self, coordy):
-        
-        if(self.rect.y + Pong.AI_SPEED < 700):
-            if(self.rect.y - Pong.PLAYER_HEIGHT + Pong.AI_SPEED > 0):
-            
-                if(self.rect.y < coordy):
-                    self.rect.y = self.rect.y + Pong.AI_SPEED
-                
-
-                if(self.rect.y > coordy):
-                    self.rect.y = self.rect.y - Pong.AI_SPEED
-    
+        """
