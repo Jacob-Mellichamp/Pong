@@ -2,15 +2,21 @@ import pygame
 import Pong
 
 # Open a new window
-size = (700, 600)
+size = (700, 500)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Pong")
 
 
-#draw net 
-pygame.draw.line(screen, Pong.WHITE, (350,500), (350, 0), 5)
-pygame.display.flip()
 
+def check_score(Playing):
+    if Pong.player1_score >= Pong.MAX_SCORE:
+        Pong.Player1Win = True
+        return True
+    elif Pong.player2_score >= Pong.MAX_SCORE:
+        Pong.Player2Win = True
+        return True
+    
+    return False
 
 #user is playing game
 Playing = True
@@ -35,10 +41,16 @@ while Playing:
     
     #refresh background after every frame
     screen.fill(Pong.BLACK)
-    
-    #draw net and score box
+
+    #draw net
     pygame.draw.line(screen, Pong.WHITE, (350,500), (350, 0), 5)
-    pygame.draw.line(screen, Pong.WHITE, (0,500), (700, 500), 5)
+
+    #Display scores:
+    font = pygame.font.Font(None, 74)
+    text = font.render(str(Pong.player1_score), 1, Pong.WHITE)
+    screen.blit(text, (250,10))
+    text = font.render(str(Pong.player2_score), 1, Pong.WHITE)
+    screen.blit(text, (420,10))
     
     #drawing sprites
     Pong.sprites_list.draw(screen)
@@ -56,6 +68,9 @@ while Playing:
     pygame.display.flip()
     #limiting fps to 60
     fps.tick(60)
+
+    if check_score(Playing):
+        Playing = False
 
 
 pygame.quit()

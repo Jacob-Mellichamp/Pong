@@ -44,11 +44,13 @@ player1 = Player(PLAYER_WIDTH, PLAYER_HEIGHT)
 player1.rect.x = 20
 player1.rect.y = 250
 player1_score = 0
+Player1Win = False
 #create player 2
 player2 = Player(PLAYER_WIDTH, PLAYER_HEIGHT)
 player2.rect.x = 670
 player2.rect.y = 250
 player2_score = 0
+Player2Win = False
 
 #sprite list
 sprites_list = pygame.sprite.Group()
