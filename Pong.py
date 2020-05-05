@@ -26,11 +26,13 @@ PLAYER_HEIGHT = 70
 #ball options
 BALL_WIDTH = 10
 BALL_HEIGHT = 10
+BALL_MIDDLE_POINT = BALL_HEIGHT // 2
 
 #paddle sections 
 top_of_paddle = PLAYER_HEIGHT // 3
 bottom_of_paddle = PLAYER_HEIGHT
 middle_of_paddle = bottom_of_paddle - top_of_paddle  
+
 #create ball
 ball = Ball(WHITE, BALL_WIDTH, BALL_HEIGHT)
 ball.rect.x = 345

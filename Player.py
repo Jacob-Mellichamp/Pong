@@ -7,7 +7,6 @@ The Player class will contain the attributes:
 - y (int)
 
 The Player class will contain the methods:
-- draw (self)
 - move (self)
 
 
