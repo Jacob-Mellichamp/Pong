@@ -35,8 +35,10 @@ while Playing:
     
     #refresh background after every frame
     screen.fill(Pong.BLACK)
-    #draw net 
+    
+    #draw net and score box
     pygame.draw.line(screen, Pong.WHITE, (350,500), (350, 0), 5)
+    pygame.draw.line(screen, Pong.WHITE, (0,500), (700, 500), 5)
     
     #drawing sprites
     Pong.sprites_list.draw(screen)

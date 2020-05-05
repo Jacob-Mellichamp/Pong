@@ -14,6 +14,10 @@ The Player class will contain the methods:
 import pygame
 import Pong
 
+#variables for the min and max movement ranges of paddles on screen (by pixels)
+PADDLE_LOW = 0
+PADDLE_HIGH = 430
+
 class Player(pygame.sprite.Sprite):
     
     #define constants
@@ -38,11 +42,13 @@ class Player(pygame.sprite.Sprite):
 
         #bounds check the mouse pointer
         cord = pygame.mouse.get_pos()[1] - (Pong.PLAYER_HEIGHT / 2)
-        if(cord < 0):
-            cord = 0
+
+        if(cord < PADDLE_LOW):
+            cord = PADDLE_LOW
         
-        if(cord > 450):
-            cord = 450
+        if(cord > PADDLE_HIGH):
+            cord = PADDLE_HIGH
+
         self.rect.y = cord
 
         
@@ -55,12 +61,10 @@ class Player(pygame.sprite.Sprite):
 
     #AI will move towards the predicted location
     def AImove(self, coordy):
-        
             
         if(self.rect.y < coordy):
             self.rect.y = self.rect.y + Pong.AI_SPEED
         
-
         if(self.rect.y > coordy):
             self.rect.y = self.rect.y - Pong.AI_SPEED
 
