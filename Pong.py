@@ -17,7 +17,7 @@ WHITE = (255,255,255)
 
 #game options
 BALL_SPEED = 10
-AI_SPEED = 5
+AI_SPEED = 2
 MAX_SCORE = 10
 
 #player options

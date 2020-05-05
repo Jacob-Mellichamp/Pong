@@ -41,8 +41,8 @@ while Playing:
     #drawing sprites
     Pong.sprites_list.draw(screen)
     #ai movement
-    # goto_y = Pong.player1.AIprediect(Pong.ball)
-    # Pong.player1.AImove(goto_y)
+    goto_y = Pong.player1.AIprediect(Pong.ball)
+    Pong.player1.AImove(goto_y)
 
     #player movement
     Pong.player2.move()
