@@ -12,8 +12,8 @@ The Player class will contain the methods:
 
 
 """
-import Pong
 import pygame
+import Pong
 
 class Player(pygame.sprite.Sprite):
     
@@ -23,17 +23,16 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
 
+        #creating sprite
         self.image = pygame.Surface([x,y])
         self.image.fill(Pong.BLACK)
         self.image.set_colorkey(Pong.BLACK)
 
+        #drawing sprite
         pygame.draw.rect(self.image, Pong.WHITE , [0, 0, self.x, self.y])
         
-        
+        #getting rect object
         self.rect = self.image.get_rect()
-
-       
-
 
     #get mouse cordinates
     def getCords(self):
@@ -42,9 +41,7 @@ class Player(pygame.sprite.Sprite):
         
     def move (self):
         self.getCords()
-
-
-    
+ 
     #AI will calculate where ball will be
     def AIprediect(self, ball):
         slope = ball.calcSlope()
@@ -53,10 +50,11 @@ class Player(pygame.sprite.Sprite):
         updated_slope = slope
         updated_y = ball.rect.y
         updated_x = ball.rect.x
-        #continue to calc until in bounds
-        while(predictedY > 700 or predictedY < 0):
 
-            #if ball hits the top
+        #TODO: fix bug causing infinite loop
+        #continue to calc until in bounds 
+        while(predictedY > 700 or predictedY < 0):
+            #if ball hits the top   
             if (predictedY > 700):
                 updated_x = (700 - updated_y) + (updated_slope * updated_x) / updated_slope
                 updated_slope = -updated_slope
@@ -70,8 +68,6 @@ class Player(pygame.sprite.Sprite):
                 updated_y = 0
                 predictedY = updated_slope * (self.rect.x - updated_x) + updated_y
             
-        
-
         return predictedY
 
     #AI will move towards the predicted location

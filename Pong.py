@@ -16,15 +16,23 @@ BLACK = (0,0,0)
 WHITE = (255,255,255)
 
 #game options
-BALL_SPEED = 1
+BALL_SPEED = 5
 AI_SPEED = 5
 
 #player options
 PLAYER_WIDTH = 10
 PLAYER_HEIGHT = 70
 
+#ball options
+BALL_WIDTH = 10
+BALL_HEIGHT = 10
+
+#paddle sections 
+top_of_paddle = PLAYER_HEIGHT // 3
+bottom_of_paddle = PLAYER_HEIGHT
+middle_of_paddle = bottom_of_paddle - top_of_paddle  
 #create ball
-ball = Ball(WHITE, 10, 10)
+ball = Ball(WHITE, BALL_WIDTH, BALL_HEIGHT)
 ball.rect.x = 345
 ball.rect.y = 195
 

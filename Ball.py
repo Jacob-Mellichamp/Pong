@@ -14,8 +14,13 @@ The Player class will contain the methods:
 
 """
 import pygame
+import random
 import Pong
-from random import randint
+
+#list of possible starting directions (-1=left, 1=right)
+starting_direction = [-1, 1]
+
+
 
 class Ball(pygame.sprite.Sprite):
     
@@ -31,9 +36,9 @@ class Ball(pygame.sprite.Sprite):
 
         #getting rectangle object
         self.rect = self.image.get_rect()
-
+        
         #generating velocity
-        self.velocity = [randint(4,8), randint(-8,8)]
+        self.velocity = [random.choice(starting_direction), random.randint(-5,5)] 
         
         pygame.draw.rect(self.image, Pong.WHITE , [0, 0, self.x, self.y])
 
@@ -43,7 +48,7 @@ class Ball(pygame.sprite.Sprite):
         
     def move(self, speed):
         self.rect.x += self.velocity[0] * speed
-        self.rect.y += self.velocity[1] * speed
+        self.rect.y += self.velocity[1]
 
 
     def check_bounds(self):
@@ -58,8 +63,23 @@ class Ball(pygame.sprite.Sprite):
         if self.rect.y <= 0:
             self.velocity[1] = -self.velocity[1]
 
-    def bounce(self):
-        #TODO: figure out some physics
+    def bounce(self, player_y):
+
+
+        #getting the 3 different segmented ranges of the paddle
+        top_range  = player_y + Pong.top_of_paddle
+        middle_range = player_y + Pong.middle_of_paddle
+        lower_range = player_y + Pong.bottom_of_paddle
+        #getting the ball's middle point
+        ball_y = self.rect.y + 5
+        #changing directions
         self.velocity[0] = -self.velocity[0]
-        #self.velocity[1] = randint(-8,8)
+
+        #TODO: figure out some physics
+        if ball_y >= player_y and ball_y <= top_range:
+            self.velocity[1] = random.randint(-5, -1)
+        elif ball_y >= top_range and ball_y <= middle_range:
+            self.velocity[1] = 0
+        elif ball_y >= middle_range and ball_y <= lower_range:
+            self.velocity[1] = random.randint(1, 5)
     

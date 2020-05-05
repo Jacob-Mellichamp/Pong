@@ -27,8 +27,11 @@ while Playing:
     Pong.ball.check_bounds()
     
     #checking for collision between player paddles and ball
-    if pygame.sprite.collide_mask(Pong.ball, Pong.player1) or pygame.sprite.collide_mask(Pong.ball, Pong.player2):
-        Pong.ball.bounce()
+    if pygame.sprite.collide_mask(Pong.ball, Pong.player1):
+        Pong.ball.bounce(Pong.player1.rect.y)
+    elif pygame.sprite.collide_mask(Pong.ball, Pong.player2):
+        Pong.ball.bounce(Pong.player2.rect.y)
+        
     
     #refresh background after every frame
     screen.fill(Pong.BLACK)
@@ -38,10 +41,13 @@ while Playing:
     #drawing sprites
     Pong.sprites_list.draw(screen)
 
-    #movement
-    goto_y = Pong.player1.AIprediect(Pong.ball)
-    Pong.player1.AImove(goto_y)
+    #ai movement
+    # goto_y = Pong.player1.AIprediect(Pong.ball)
+    # Pong.player1.AImove(goto_y)
+
+    #player movement
     Pong.player2.move()
+    #Pong.player1.move()
 
     #moving ball
     Pong.ball.move(Pong.BALL_SPEED)
