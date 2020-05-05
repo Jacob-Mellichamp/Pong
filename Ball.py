@@ -53,11 +53,12 @@ class Ball(pygame.sprite.Sprite):
 
     def check_bounds(self):
         if self.rect.x >= 690:
-            #flip the velocity (change direction)
-            self.velocity[0] = -self.velocity[0]
+            Pong.player1_score +=1
+            self.respawn()
         if self.rect.x <= 0:
-            self.velocity[0] = -self.velocity[0]
-
+            Pong.player2_score +=1
+            self.respawn()
+        #flip the velocity (change direction)
         if self.rect.y >= 490:
             self.velocity[1] = -self.velocity[1]
         if self.rect.y <= 0:
@@ -71,7 +72,7 @@ class Ball(pygame.sprite.Sprite):
 
         #getting the ball's middle point
         ball_y = self.rect.y + Pong.BALL_MIDDLE_POINT
-        
+
         #changing directions
         self.velocity[0] = -self.velocity[0]
 
@@ -81,4 +82,10 @@ class Ball(pygame.sprite.Sprite):
             self.velocity[1] = 0
         elif ball_y >= middle_range and ball_y <= lower_range:
             self.velocity[1] = random.randint(1, 5)
+
+    def respawn(self):
+        #respawning ball after score
+        self.rect.x = 345
+        self.rect.y = 195
+        self.velocity = [random.choice(starting_direction), random.randint(-5,5)]
     

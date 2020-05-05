@@ -16,8 +16,9 @@ BLACK = (0,0,0)
 WHITE = (255,255,255)
 
 #game options
-BALL_SPEED = 5
+BALL_SPEED = 10
 AI_SPEED = 5
+MAX_SCORE = 10
 
 #player options
 PLAYER_WIDTH = 10
@@ -42,10 +43,12 @@ ball.rect.y = 195
 player1 = Player(PLAYER_WIDTH, PLAYER_HEIGHT)
 player1.rect.x = 20
 player1.rect.y = 250
+player1_score = 0
 #create player 2
 player2 = Player(PLAYER_WIDTH, PLAYER_HEIGHT)
 player2.rect.x = 670
 player2.rect.y = 250
+player2_score = 0
 
 #sprite list
 sprites_list = pygame.sprite.Group()
