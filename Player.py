@@ -8,6 +8,10 @@ The Player class will contain the attributes:
 
 The Player class will contain the methods:
 - move (self)
+- getCords(self)
+- AImove(self)
+- addPoint(self)
+- getScore(self)
 
 
 """
@@ -25,6 +29,7 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         self.x = x
         self.y = y
+        self.score = 0
 
         #creating sprite
         self.image = pygame.Surface([x,y])
@@ -50,26 +55,25 @@ class Player(pygame.sprite.Sprite):
             cord = PADDLE_HIGH
 
         self.rect.y = cord
-
-        
+   
     def move (self):
         self.getCords()
  
-    #AI will calculate where ball will be
-    def AIprediect(self, ball):
-        return ball.rect.y
-
     #AI will move towards the predicted location
-    def AImove(self, coordy):
+    def AImove(self):
             
-        if(self.rect.y < coordy):
+        if(self.rect.y < Pong.ball.rect.y):
             self.rect.y = self.rect.y + Pong.AI_SPEED
         
-        if(self.rect.y > coordy):
+        if(self.rect.y > Pong.ball.rect.y):
             self.rect.y = self.rect.y - Pong.AI_SPEED
 
-
-
+    def addPoint(self):
+        self.score += 1
+    
+    def getScore(self):
+        return self.score
+    
     """
     Fun algorithm to predict exactly where ball will be
             slope = ball.calcSlope()

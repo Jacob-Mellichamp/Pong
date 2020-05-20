@@ -6,6 +6,7 @@ These options can be changed to customize the experience
 import pygame
 from Ball import Ball
 from Player import Player
+from Qbot import AI
 
 
 #initializing pygame
@@ -17,7 +18,7 @@ WHITE = (255,255,255)
 
 #game options
 BALL_SPEED = 10
-AI_SPEED = 2
+AI_SPEED = 3
 MAX_SCORE = 10
 
 #player options
@@ -43,18 +44,18 @@ ball.rect.y = 195
 player1 = Player(PLAYER_WIDTH, PLAYER_HEIGHT)
 player1.rect.x = 20
 player1.rect.y = 250
-player1_score = 0
-Player1Win = False
+
 #create player 2
 player2 = Player(PLAYER_WIDTH, PLAYER_HEIGHT)
 player2.rect.x = 670
 player2.rect.y = 250
-player2_score = 0
-Player2Win = False
 
 #sprite list
 sprites_list = pygame.sprite.Group()
 sprites_list.add(ball)
 sprites_list.add(player1)
 sprites_list.add(player2)
+
+#Q-learning AI Stuff (WIP)
+testAI = AI(ball, player2, 700, 500)
 

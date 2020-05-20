@@ -12,6 +12,7 @@ The ball class will contain the methods:
 - check_bounds (self)
 - calcSlope (self)
 - bounce (self, player_y)
+- respawn(self)
 
 
 """
@@ -50,13 +51,13 @@ class Ball(pygame.sprite.Sprite):
         self.rect.x += self.velocity[0] * speed
         self.rect.y += self.velocity[1]
 
-
+    #function to make the ball bounce when hitting edges of screen
     def check_bounds(self):
         if self.rect.x >= 690:
-            Pong.player1_score +=1
+            Pong.player1.addPoint()
             self.respawn()
         if self.rect.x <= 0:
-            Pong.player2_score +=1
+            Pong.player2.addPoint()
             self.respawn()
         #flip the velocity (change direction)
         if self.rect.y >= 490:
@@ -64,6 +65,7 @@ class Ball(pygame.sprite.Sprite):
         if self.rect.y <= 0:
             self.velocity[1] = -self.velocity[1]
 
+    #function to determine how the ball bounces off the paddles
     def bounce(self, player_y):
         #getting the 3 different segmented ranges of the paddle
         top_range  = player_y + Pong.top_of_paddle
